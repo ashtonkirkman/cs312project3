@@ -97,13 +97,3 @@ def find_shortest_path_with_array(
         current = prev[current]
 
     return path, dist[target]
-
-
-if __name__ == '__main__':
-    queue = LinearPQ()
-    queue.insert(1, 2.125)
-    queue.insert(2, 1.125)
-    queue.insert(3, 4.125)
-    queue.insert(4, 3.125)
-
-    minimum = queue.delete_min()
