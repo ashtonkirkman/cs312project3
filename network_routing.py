@@ -1,3 +1,6 @@
+from priority_queues import LinearPQ
+
+
 def find_shortest_path_with_heap(
         graph: dict[int, dict[int, float]],
         source: int,
@@ -11,7 +14,7 @@ def find_shortest_path_with_heap(
         - the list of nodes (including `source` and `target`)
         - the cost of the path
     """
-
+    pass
 
 
 def find_shortest_path_with_array(
@@ -34,11 +37,12 @@ def find_shortest_path_with_array(
     dist[source] = 0
 
     # Create a list of nodes to visit
-    H = list(range(number_of_nodes))
+    pq = LinearPQ()
+    for node in range(number_of_nodes):
+        pq.insert(node, dist[node])
 
-    while H:
-        u = min(H, key=lambda node: dist[node])
-        H.remove(u)
+    while not pq.is_empty():
+        u = pq.delete_min()
 
         if dist[u] == float('inf') or u == target:
             break
@@ -48,6 +52,7 @@ def find_shortest_path_with_array(
             if dist[v] > dist[u] + weight:
                 dist[v] = dist[u] + weight
                 prev[v] = u
+                pq.decrease_key(v, dist[v])
 
     path = []
     current = target
@@ -61,3 +66,11 @@ def find_shortest_path_with_array(
     return path, dist[target]
 
 
+if __name__ == '__main__':
+    queue = LinearPQ()
+    queue.insert(1, 2.125)
+    queue.insert(2, 1.125)
+    queue.insert(3, 4.125)
+    queue.insert(4, 3.125)
+
+    minimum = queue.delete_min()
