@@ -116,8 +116,21 @@ if __name__ == '__main__':
     if args.target is None:
         args.target = args.n - 1
 
-    main(args.seed, args.n, args.density, args.noise, args.source, args.target)
+    # main(args.seed, args.n, args.density, args.noise, args.source, args.target)
 
     # You can use a loop like the following to generate data for your tables:
-    # for n in [100, 200, 400, 800, 1600, 3200, 6400]:
-    #     main(312, n, 1, 0.05, 2, 9)
+    source = 2
+    seed = 312
+    noise = 0.02
+    target = 9
+
+    for n in [1000, 2000, 3000, 4000, 5000, 6000]:
+        main(seed, n, 1, noise, source, target)
+
+    # main(seed, 1000, 0.01, noise, source, target)
+    # main(seed, 5000, 0.002, noise, source, target)
+    # main(seed, 10000, 0.001, noise, source, target)
+    # main(seed, 50000, 0.0002, noise, source, target)
+    # main(seed, 100000, 0.0001, noise, source, target)
+
+
